@@ -13,6 +13,7 @@
 	export async function load({ url, params, fetch }) {
 		// ... DEBUGGING;
 		if (dev) console.debug('-- obtaining translations! --');
+
 		// ... GET RESPONSE;
 		const response_featured_match = await fetch('/api/featured_match/cache-seo.json', {
 			method: 'GET'
@@ -27,12 +28,20 @@
 		// ... DEBUGGING;
 		// if (dev) console.debug('-- preloaded_translations_response_qty --', response);
 
+		// ... GET RESPONSE;
+		const response_league_list = await fetch('/api/league_list/cache-seo.json', {
+			method: 'GET'
+		}).then((r) => r.json());
+		// ... DEBUGGING;
+		// if (dev) console.debug('-- preloaded_translations_response_qty --', response);
+
 		// ... return, RESPONSE DATA;
 		if (response_featured_match && response_featured_betting_sites) {
 			return {
 				props: {
 					FEATURED_MATCH_WIDGET_DATA_SEO: response_featured_match,
-					FEATURED_BETTING_SITES_WIDGET_DATA_SEO: response_featured_betting_sites
+					FEATURED_BETTING_SITES_WIDGET_DATA_SEO: response_featured_betting_sites,
+					LEAGUE_LIST_WIDGET_DATA_SEO: response_league_list
 				}
 			};
 		}
@@ -62,10 +71,12 @@
 	import SvelteSeo from 'svelte-seo';
 	import FeaturedMatchWidget from '$lib/components/featured_match/_FeaturedMatch_Widget.svelte';
 	import FeaturedBettingSitesWidget from '$lib/components/featured_betting_sites/_FeaturedBettingSitesWidget.svelte';
+	import LeagueListWidget from '$lib/components/league_list/_LeagueList_Widget.svelte';
 
 	// ... PAGE PRE-LOADED DATA;
 	export let FEATURED_MATCH_WIDGET_DATA_SEO;
 	export let FEATURED_BETTING_SITES_WIDGET_DATA_SEO;
+	export let LEAGUE_LIST_WIDGET_DATA_SEO;
 
 	// ... redirecting the users to the correct translation page [THAT IS NOT EN]
 	$: if (dev) console.debug('$userBetarenaSettings', $userBetarenaSettings);
@@ -181,8 +192,10 @@
 <section id="home-page">
 
 	{#if !mobileExclusive}
-		 <!-- ... 1st ROW ... -->
-		<div />
+		<!-- ... 1st ROW ... -->
+		<div> 
+			<LeagueListWidget {LEAGUE_LIST_WIDGET_DATA_SEO} />
+		</div>
 
 		<!-- ... 2nd ROW ... -->
 		<div />
@@ -208,6 +221,7 @@
 		display: grid;
 		max-width: 1430px;
 		grid-template-columns: 1fr;
+		align-items: start;
 	}
 
 	div.grid-display-column {
