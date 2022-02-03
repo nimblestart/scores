@@ -118,7 +118,7 @@ import { xlink_attr } from 'svelte/internal';
 						<div>{d.name}</div>
 						<div class="dayNumber">{d.day}</div>
 					</div>
-				{/each}
+			 	{/each}
 		</div>
 		</div>
 	{#await listenRealTimeOddsChange(currentTable)}
