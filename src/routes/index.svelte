@@ -72,6 +72,7 @@
 	import FeaturedMatchWidget from '$lib/components/featured_match/_FeaturedMatch_Widget.svelte';
 	import FeaturedBettingSitesWidget from '$lib/components/featured_betting_sites/_FeaturedBettingSitesWidget.svelte';
 	import LeagueListWidget from '$lib/components/league_list/_LeagueList_Widget.svelte';
+	import LiveScoresWidget from '$lib/components/live_scores/_LiveScores_Widget.svelte';
 
 	// ... PAGE PRE-LOADED DATA;
 	export let FEATURED_MATCH_WIDGET_DATA_SEO;
@@ -198,7 +199,9 @@
 		</div>
 
 		<!-- ... 2nd ROW ... -->
-		<div />
+		<div >
+			<LiveScoresWidget></LiveScoresWidget>
+		</div>
 	{/if}
 	
 	<!-- ... 3rd ROW ... -->
@@ -206,6 +209,7 @@
 		class='grid-display-column'>
 		<!-- ... widget #1 ... -->
 		<FeaturedMatchWidget {FEATURED_MATCH_WIDGET_DATA_SEO} />
+
 		<!-- ... widget #2 ... -->
 		<FeaturedBettingSitesWidget {FEATURED_BETTING_SITES_WIDGET_DATA_SEO} />
 	</div>
