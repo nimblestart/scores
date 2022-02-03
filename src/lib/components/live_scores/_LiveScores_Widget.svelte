@@ -23,19 +23,24 @@
 	import { page } from '$app/stores'
 	import { post } from '$lib/api/utils'
 	import type { GeoJsResponse } from "$lib/model/geo-js-interface"
-import { xlink_attr } from 'svelte/internal';
+	import { xlink_attr } from 'svelte/internal';
 
 	// ... key component assets;
 	import blinker from './assets/blinker.gif'
 	import play from './assets/play.svg'
+import { userBetarenaSettings } from '$lib/store/user-settings';
 	let TABLE_GAMES: LiveScoreLeague[] = [];
 	let currentDay = 0;
 	let currentSelection = 0;
 	let currentTable = 'livescores_today';
 	let lastTable = 'livescores_today';
 	let totalGames = 0;
+	console.log("oi");
+	let loaded: boolean = false;
+	let nomatches: boolean = false;
+	let refresh: boolean = false;
+	let refresh_data: any = undefined;
 
-	
 	// ... widget-language-declaration;
 	let server_side_language: string = 'en';
 	// ... language-translation-declaration;
@@ -101,6 +106,18 @@ import { xlink_attr } from 'svelte/internal';
 		LIST_DAYS.push({name:dayNames[day.getDay()],day:day.getDate(),sel:i,table:tableNames[day.getDay()]});
     } 
 
+
+	$: refresh_data = $userBetarenaSettings.country_bookmaker;
+	// ...
+	$: if (refresh_data) {
+		// ... reset necessary variables;
+		refresh = true
+		loaded = false
+		// ... give X seconds for re-render component;
+		setTimeout(async() => {
+			refresh = false
+		}, 50)
+	}
 
 </script>
  

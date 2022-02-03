@@ -1,5 +1,54 @@
 import type { FixtureResponse, MatchVotes } from './interface-fixture';
 
+
+
+export interface LiveScoreGame {
+	id: number;
+	league_id: number;
+	league: string;
+	localteam: string;
+	visitorteam: string; 
+	localteam_score:string;
+	visitorteam_score:string;
+	minute: string;
+	flag: string;
+	starting_at: string;
+	status: string;
+	medias: number;
+	links:string[];
+	tips:string[];
+}
+
+export interface LiveScoreLeague {
+	id: number;
+	name:string;
+	flag:string;
+	games:LiveScoreLeagueGame[];
+}
+
+
+export interface DayName {
+	name:string;
+	day:number;
+	sel:number;
+	table:string;
+}
+
+
+export interface LiveScoreLeagueGame {
+	id: number;
+	localteam: string;
+	visitorteam: string;
+	localScore: string;
+	visitorScore: string;
+	minute: string;
+	hour: string;
+	status: string;
+	medias: number;
+	links:string[];
+	tips:string[];
+}
+
 /**
  * TV_Stations Data for the Response Values;
  */

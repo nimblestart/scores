@@ -200,7 +200,7 @@
 
 		<!-- ... 2nd ROW ... -->
 		<div >
-			<LiveScoresWidget></LiveScoresWidget>
+			<LiveScoresWidget />
 		</div>
 	{/if}
 	
@@ -208,7 +208,7 @@
 	<div 
 		class='grid-display-column'>
 		<!-- ... widget #1 ... -->
-		<FeaturedMatchWidget {FEATURED_MATCH_WIDGET_DATA_SEO} />
+		<FeaturedMatchWidget {FEATURED_MATCH_WIDGET_DATA_SEO} /> 
 
 		<!-- ... widget #2 ... -->
 		<FeaturedBettingSitesWidget {FEATURED_BETTING_SITES_WIDGET_DATA_SEO} />
